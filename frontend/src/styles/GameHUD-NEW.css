@@ -1,0 +1,321 @@
+/* ============================================
+   CIVILAI — Game HUD (Top Bar)
+   ============================================ */
+
+.game-hud {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background: rgba(11, 15, 26, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 1000;
+  height: 60px;
+  border-bottom: 1px solid var(--border-subtle);
+  gap: 12px;
+}
+
+.game-hud>* {
+  pointer-events: all;
+}
+
+/* ==================== Sections ==================== */
+.hud-section {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.hud-section.left {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.hud-section.center {
+  flex: 1 1 auto;
+  justify-content: center;
+  max-width: 340px;
+  min-width: 200px;
+}
+
+.hud-section.right {
+  flex: 0 0 auto;
+  gap: 12px;
+}
+
+/* ==================== Stat Cards ==================== */
+.hud-stat {
+  background: var(--bg-surface);
+  border-radius: var(--radius-sm);
+  padding: 6px 12px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  border: 1px solid var(--border-subtle);
+  transition: border-color 0.2s ease;
+}
+
+.hud-stat:hover {
+  border-color: var(--border-medium);
+}
+
+.stat-icon {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+.hud-stat.budget .stat-icon {
+  color: var(--success);
+}
+
+.hud-stat.budget.low .stat-icon {
+  color: var(--warning);
+}
+
+.hud-stat.budget.negative .stat-icon {
+  color: var(--danger);
+}
+
+.hud-stat.time .stat-icon {
+  color: var(--accent);
+}
+
+.hud-stat.score .stat-icon {
+  color: #a78bfa;
+}
+
+.hud-stat.realtime .stat-icon {
+  color: var(--text-secondary);
+}
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 60px;
+}
+
+.stat-label {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.stat-value {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.real-clock {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.5px;
+}
+
+/* ==================== City Health ==================== */
+.city-health {
+  background: var(--bg-surface);
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  border: 1px solid var(--border-subtle);
+  width: 100%;
+}
+
+.city-health h3 {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  margin: 0 0 4px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-weight: 600;
+}
+
+.health-bar-container {
+  position: relative;
+  height: 18px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 9px;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.health-bar {
+  height: 100%;
+  border-radius: 9px;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.health-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.health-breakdown {
+  display: flex;
+  gap: 10px;
+  font-size: 0.65rem;
+}
+
+.breakdown-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-secondary);
+}
+
+.breakdown-item .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.breakdown-item.healthy .dot {
+  background: var(--success);
+}
+
+.breakdown-item.warning .dot {
+  background: var(--warning);
+}
+
+.breakdown-item.critical .dot {
+  background: var(--danger);
+}
+
+/* ==================== Control Buttons ==================== */
+.time-controls {
+  display: flex;
+  gap: 6px;
+}
+
+.control-btn {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  min-width: 40px;
+  height: 40px;
+  padding: 0 14px;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-shrink: 0;
+  font-weight: 600;
+  font-family: var(--font);
+  white-space: nowrap;
+}
+
+.control-btn:hover:not(:disabled) {
+  background: var(--bg-surface-hover);
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.control-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.control-btn.active {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: var(--success);
+  color: var(--success);
+}
+
+.control-btn.advance {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: var(--success);
+}
+
+.control-btn.advance:hover:not(:disabled) {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: var(--success);
+  color: var(--success);
+}
+
+/* ==================== Stats Summary ==================== */
+.stats-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: var(--bg-surface);
+  border-radius: var(--radius-sm);
+  padding: 6px 12px;
+  border: 1px solid var(--border-subtle);
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.65rem;
+}
+
+.summary-label {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.summary-value {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+/* ==================== Animations ==================== */
+.stat-change {
+  font-size: 0.65rem;
+  font-weight: 700;
+  margin-left: 4px;
+}
+
+.stat-change.positive {
+  color: var(--success);
+}
+
+.stat-change.negative {
+  color: var(--danger);
+}
+
+@keyframes pulse-red {
+
+  0%,
+  100% {
+    border-color: var(--danger);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.5);
+  }
+
+  50% {
+    border-color: #dc2626;
+    box-shadow: 0 0 0 6px rgba(239, 68, 68, 0);
+  }
+}
+
+.hud-stat.budget.negative {
+  border: 1px solid var(--danger);
+  animation: pulse-red 2s infinite;
+}

@@ -1,0 +1,311 @@
+/* ============================================
+   CIVILAI — AI Predictions Dashboard
+   ============================================ */
+
+.ai-predictions {
+  padding: 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+  color: var(--text-primary);
+}
+
+.predictions-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.predictions-header h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  letter-spacing: -0.5px;
+}
+
+.predictions-header p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* Summary Cards */
+.prediction-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.summary-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid var(--border-subtle);
+  transition: all 0.2s ease;
+}
+
+.summary-card:hover {
+  border-color: var(--border-medium);
+  background: var(--bg-surface-hover);
+}
+
+.summary-card.critical {
+  border-left: 3px solid var(--danger);
+}
+
+.summary-card.warning {
+  border-left: 3px solid var(--warning);
+}
+
+.summary-card.cost {
+  border-left: 3px solid var(--accent);
+}
+
+.summary-card.accuracy {
+  border-left: 3px solid var(--success);
+}
+
+.card-icon {
+  font-size: 2rem;
+  opacity: 0.8;
+}
+
+.summary-card.critical .card-icon {
+  color: var(--danger);
+}
+
+.summary-card.warning .card-icon {
+  color: var(--warning);
+}
+
+.summary-card.cost .card-icon {
+  color: var(--accent);
+}
+
+.summary-card.accuracy .card-icon {
+  color: var(--success);
+}
+
+.card-content h3 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin: 0 0 4px 0;
+}
+
+.card-content p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+}
+
+/* Risk Zones */
+.risk-zones {
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  margin-bottom: 32px;
+  border: 1px solid var(--border-subtle);
+}
+
+.risk-zones h3 {
+  margin-bottom: 16px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.zones-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.zone-card {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  border: 1px solid var(--border-subtle);
+}
+
+.zone-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.zone-icon {
+  font-size: 1.2rem;
+}
+
+.zone-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.zone-risk-bar {
+  background: rgba(255, 255, 255, 0.06);
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.zone-risk-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.zone-risk-value {
+  text-align: right;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* Timeline */
+.prediction-timeline {
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  margin-bottom: 32px;
+  border: 1px solid var(--border-subtle);
+}
+
+.prediction-timeline h3 {
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.section-description {
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  font-size: 0.85rem;
+}
+
+.timeline-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.no-predictions {
+  text-align: center;
+  padding: 32px;
+  font-size: 1rem;
+  color: var(--success);
+}
+
+.timeline-item {
+  display: flex;
+  gap: 16px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  border-left: 3px solid var(--accent);
+  transition: all 0.2s ease;
+}
+
+.timeline-item:hover {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.timeline-urgency {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.timeline-details {
+  flex: 1;
+}
+
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.timeline-node {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.timeline-confidence {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+}
+
+.timeline-metrics {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 10px;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+}
+
+.timeline-action button {
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  color: var(--accent);
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--font);
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+.timeline-action button:hover {
+  background: rgba(99, 102, 241, 0.25);
+  border-color: var(--accent);
+}
+
+/* Model Info */
+.model-info {
+  background: rgba(16, 185, 129, 0.06);
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  border-radius: var(--radius-md);
+  padding: 20px;
+}
+
+.model-info h4 {
+  margin-bottom: 12px;
+  color: var(--success);
+  font-weight: 700;
+}
+
+.model-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 10px;
+}
+
+.model-stat {
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+}
+
+.model-stat strong {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--success);
+  font-size: 0.8rem;
+}

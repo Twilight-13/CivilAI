@@ -1,0 +1,293 @@
+/* ============================================
+   CIVILAI — Analytics Dashboard
+   ============================================ */
+
+.analytics {
+  padding: 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+  color: var(--text-primary);
+}
+
+.analytics-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.analytics-header h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  letter-spacing: -0.5px;
+}
+
+.analytics-header p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* KPI Grid */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.kpi-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid var(--border-subtle);
+  transition: all 0.2s ease;
+}
+
+.kpi-card:hover {
+  border-color: var(--border-medium);
+  background: var(--bg-surface-hover);
+}
+
+.kpi-icon {
+  font-size: 2rem;
+  opacity: 0.8;
+}
+
+.kpi-content {
+  flex: 1;
+}
+
+.kpi-value {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.kpi-label {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+}
+
+/* Charts */
+.chart-container {
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  margin-bottom: 24px;
+  border: 1px solid var(--border-subtle);
+}
+
+.chart-container h3 {
+  margin-bottom: 16px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+/* Line Chart */
+.line-chart {
+  display: flex;
+  gap: 10px;
+}
+
+.chart-y-axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  padding-right: 8px;
+  font-variant-numeric: tabular-nums;
+}
+
+.chart-area {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-sm);
+  padding: 10px;
+}
+
+.chart-x-axis {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 8px;
+  padding-left: 60px;
+}
+
+/* Bar Chart */
+.bar-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bar-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bar-label {
+  min-width: 90px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.bar-container {
+  flex: 1;
+  position: relative;
+  height: 36px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bar-value {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  font-size: 0.85rem;
+}
+
+/* Health Gauge */
+.health-gauge {
+  display: flex;
+  justify-content: center;
+  padding: 16px;
+}
+
+/* Performance Summary */
+.performance-summary {
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  margin-bottom: 24px;
+  border: 1px solid var(--border-subtle);
+}
+
+.performance-summary h3 {
+  margin-bottom: 16px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.summary-item {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  text-align: center;
+}
+
+.summary-label {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  margin-bottom: 8px;
+  display: block;
+  font-weight: 500;
+}
+
+.summary-value {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+/* Cost-Benefit Analysis */
+.cost-benefit {
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  border: 1px solid var(--border-subtle);
+}
+
+.cost-benefit h3 {
+  margin-bottom: 16px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.benefit-card {
+  border-radius: var(--radius-md);
+  padding: 20px;
+  border: 1px solid;
+  background: var(--bg-surface);
+}
+
+.benefit-card.positive {
+  background: rgba(16, 185, 129, 0.06);
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+.benefit-card.negative {
+  background: rgba(239, 68, 68, 0.06);
+  border-color: rgba(239, 68, 68, 0.2);
+}
+
+.benefit-card.neutral {
+  background: rgba(99, 102, 241, 0.06);
+  border-color: rgba(99, 102, 241, 0.2);
+}
+
+.benefit-card h4 {
+  margin-bottom: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.benefit-value {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.benefit-card.positive .benefit-value {
+  color: var(--success);
+}
+
+.benefit-card.negative .benefit-value {
+  color: var(--danger);
+}
+
+.benefit-card.neutral .benefit-value {
+  color: var(--accent);
+}
+
+.benefit-card p {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin: 0;
+}

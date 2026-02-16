@@ -1,0 +1,189 @@
+/* ============================================
+   CIVILAI — Layer Controls (Right Sidebar)
+   ============================================ */
+
+.layer-controls {
+  position: absolute;
+  top: 80px;
+  right: 0;
+  width: 300px;
+  max-height: calc(100vh - 100px);
+  background: rgba(11, 15, 26, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  border-right: none;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.3);
+}
+
+.toggle-panel-btn {
+  position: absolute;
+  left: -36px;
+  top: 16px;
+  background: rgba(11, 15, 26, 0.92);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-subtle);
+  border-right: none;
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  width: 36px;
+  height: 44px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-panel-btn:hover {
+  background: rgba(99, 102, 241, 0.15);
+  color: var(--accent);
+}
+
+.layer-controls-content {
+  padding: 16px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  flex: 1;
+}
+
+.panel-title {
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: -0.3px;
+}
+
+.panel-title svg {
+  color: var(--accent);
+  font-size: 0.9rem;
+}
+
+.layers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.layer-item {
+  background: var(--bg-surface);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.layer-item.active {
+  border-color: var(--border-medium);
+  background: var(--bg-surface-hover);
+}
+
+.layer-item.inactive {
+  opacity: 0.45;
+}
+
+.layer-header {
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.layer-header:hover {
+  background: var(--bg-surface-hover);
+}
+
+.layer-icon {
+  font-size: 1.2rem;
+}
+
+.layer-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.layer-name {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.layer-description {
+  color: var(--text-muted);
+  font-size: 0.7rem;
+}
+
+.layer-toggle {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.layer-stats {
+  padding: 10px 12px;
+  background: rgba(0, 0, 0, 0.25);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 4px 0;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.stat-row.critical {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.stat-row.warning {
+  color: var(--warning);
+  font-weight: 600;
+}
+
+.stat-row .stat-value {
+  font-weight: 700;
+  color: var(--text-primary);
+  font-size: 0.78rem;
+}
+
+.layer-actions {
+  margin-top: 16px;
+  display: flex;
+  gap: 8px;
+}
+
+.action-btn {
+  flex: 1;
+  padding: 8px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-family: var(--font);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+  background: rgba(99, 102, 241, 0.1);
+  border-color: var(--accent);
+  color: var(--accent);
+}
