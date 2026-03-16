@@ -1,11 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { FaDollarSign, FaClock, FaTrophy, FaPlay, FaPause, FaForward, FaExclamationTriangle, FaWrench } from 'react-icons/fa';
+import { FaDollarSign, FaClock, FaTrophy, FaPlay, FaPause, FaForward, FaExclamationTriangle, FaWrench, FaBrain, FaNetworkWired } from 'react-icons/fa';
+import axios from 'axios';
 import '../styles/GameHUD-NEW.css';
 
+const API = 'http://localhost:5000';
+
 export default function GameHUD({ gameState, autoPlay, onToggleAutoPlay, onAdvanceTime }) {
-  const [prevBudget, setPrevBudget] = useState(0);
+  const [prevBudget, setPrevBudget]   = useState(0);
   const [budgetChange, setBudgetChange] = useState(0);
+  const [aiStatus, setAiStatus]       = useState(null);
+
+  const fetchAiStatus = useCallback(async () => {
+    try {
+      const { data } = await axios.get(`${API}/api/model-info`);
+      setAiStatus(data);
+    } catch (_) { setAiStatus(null); }
+  }, []);
+
+  useEffect(() => { fetchAiStatus(); }, [fetchAiStatus]);
 
   useEffect(() => {
     if (gameState && gameState.budget !== prevBudget) {
@@ -26,8 +39,16 @@ export default function GameHUD({ gameState, autoPlay, onToggleAutoPlay, onAdvan
   const healthColor = healthPercentage >= 60 ? '#2ecc71' :
     healthPercentage >= 30 ? '#f39c12' : '#e74c3c';
 
+  const gnnLoaded = aiStatus?.gnn?.loaded;
+  const rlLoaded  = aiStatus?.rl?.loaded;
+  const bothLoaded = gnnLoaded && rlLoaded;
+
   return (
     <div className="game-hud">
+      {/* AI Model Status pill */}
+      <div className={`ai-status-pill ${bothLoaded ? 'ai-active' : gnnLoaded ? 'ai-partial' : 'ai-off'}`}>
+        {bothLoaded ? <><FaBrain /> GNN + RL Active</> : gnnLoaded ? <><FaBrain /> GNN Active</> : <><FaNetworkWired /> Heuristic Mode</>}
+      </div>
       {/* Left Section - Game Info */}
       <div className="hud-section left">
         <motion.div

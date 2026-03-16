@@ -1,18 +1,39 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { FaRobot, FaUser } from 'react-icons/fa';
+import { FaRobot, FaUser, FaCheckCircle, FaNetworkWired } from 'react-icons/fa';
+import axios from 'axios';
 import '../styles/AllFeatures.css';
+
+const API = 'http://localhost:5000';
 
 export default function Comparison({ gameState }) {
   const [humanStats, setHumanStats] = useState({});
-  const [aiStats, setAIStats] = useState({});
-  const [winner, setWinner] = useState(null);
+  const [aiStats, setAIStats]       = useState({});
+  const [winner, setWinner]         = useState(null);
+  const [rlActive, setRlActive]     = useState(false);
+  const [rlAction, setRlAction]     = useState(null);
+  const [modelMeta, setModelMeta]   = useState(null);
+
+  const fetchRlStatus = useCallback(async () => {
+    try {
+      const [actionRes, infoRes] = await Promise.all([
+        axios.get(`${API}/api/rl-action`),
+        axios.get(`${API}/api/model-info`),
+      ]);
+      setRlActive(!!actionRes.data.rl_active);
+      setRlAction(actionRes.data.action || null);
+      setModelMeta(infoRes.data);
+    } catch (_) {
+      setRlActive(false);
+    }
+  }, []);
 
   useEffect(() => {
     if (gameState) {
       calculateComparison();
+      fetchRlStatus();
     }
-  }, [gameState]);
+  }, [gameState, fetchRlStatus]);
 
   const calculateComparison = () => {
     // Human (actual player) stats
@@ -96,9 +117,21 @@ export default function Comparison({ gameState }) {
   return (
     <div className="comparison">
       <div className="comparison-header">
-        <h2>⚖️ AI vs Human Performance</h2>
-        <p>How does your strategy compare to optimal AI policy?</p>
+        <h2>AI vs Human Performance</h2>
+        <div className={`model-badge ${rlActive ? 'active' : 'inactive'}`}>
+          {rlActive ? <><FaCheckCircle /> PPO RL Agent Active</> : <><FaNetworkWired /> Heuristic Baseline</>}
+        </div>
+        <p>{rlActive
+          ? `Trained PPO agent (mean reward: ${modelMeta?.rl?.mean_reward ?? '—'}) — real decisions each turn`
+          : 'Simulated AI baseline — run train_rl.py to enable the real PPO agent'}
+        </p>
       </div>
+      {rlActive && rlAction && (
+        <div className="rl-recommendation">
+          <FaRobot style={{ marginRight: 8, color: '#a78bfa' }} />
+          <strong>RL Agent would:</strong> {rlAction.action?.toUpperCase()} {rlAction.layer?.toUpperCase()} Node #{rlAction.node_id} (health {rlAction.health}%) — {rlAction.reason}
+        </div>
+      )}
 
       {/* Winner Banner */}
       <motion.div
